@@ -1,5 +1,6 @@
 package com.cuzz.timer;
 
+import java.util.Date;
 import java.util.Timer;
 
 /**
@@ -11,10 +12,15 @@ public class MyTimer {
     public static void main(String[] args) {
         // 1. 创建一个timer实例
         Timer timer = new Timer();
+
         // 2. 创建一个MyTimerTask实例
         MyTimerTask myTimerTask = new MyTimerTask("cuzz");
+
         // 3. 通过timer定时定频率调用myTimerTast的业务逻辑
         // 任务 延迟时间 间隔时间
-        timer.schedule(myTimerTask, 2000L, 1000L);
+        //timer.schedule(myTimerTask, 2000L, 1000L);
+
+        // 3. 通过一个Date时间控制
+        timer.schedule(myTimerTask, new Date());
     }
 }

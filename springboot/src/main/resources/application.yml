@@ -1,0 +1,7 @@
+# 如果是使用多个yml来配置属性,我们则可以这么使用,通过与配置文件相同的明明规范,
+# 创建application-{profile}.yml文件,将于环境无关的属性,放置到application.yml文件里面,
+# 可以通过这种形式来配置多个环境的属性文件,在application.yml文件里面指定spring.profiles.active=profiles的值,来加载不同环境的配置,
+# 如果不指定,则默认只使用application.yml属性文件,不会加载其他的profiles的配置
+spring:
+  profiles:
+    active: prod
