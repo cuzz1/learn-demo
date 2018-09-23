@@ -1,6 +1,5 @@
 package com.cuzz.bean;
 
-import com.cuzz.bean.Person;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -13,7 +12,7 @@ public class MainTest {
     public static void main(String[] args) {
         ApplicationContext  applicationContext = new ClassPathXmlApplicationContext("bean.xml");
         // 用id获取
-        Person bean = (Person)applicationContext.getBean("person");
+        Person bean = (Person) applicationContext.getBean("person");
         System.out.println(bean);
     }
 }
