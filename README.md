@@ -9,4 +9,4 @@
 SpringBoot入门
 ## demo-05-spring-annotation
 spring中常用注解
-[笔记](demo-05-spring-annotation/notes.md)
+[学习笔记](/demo-05-spring-annotation/notes.md)
