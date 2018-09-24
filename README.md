@@ -10,3 +10,4 @@ SpringBoot入门
 ## demo-05-spring-annotation
 spring中常用注解
 - [spring注解笔记(一)](/demo-05-spring-annotation/notes01.md)
+- [spring注解笔记(二)](/demo-05-spring-annotation/notes02.md)

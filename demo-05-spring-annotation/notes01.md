@@ -99,7 +99,7 @@ person01
 
 只要标注了注解就能扫描到如:@Controller @Service @Repository @component
 
-```
+```xml
 <context:component-scan base-package="com.cuzz"></context:component-scan>
 ```
 
@@ -248,7 +248,7 @@ public class MyTypeFilter implements TypeFilter{
 
 使用自定义注解记得需要关闭默认过滤器`useDefaultFilters = false`
 
-```jav
+```java
 /**
  * @Author: cuzz
  * @Date: 2018/9/23 10:55
@@ -325,7 +325,7 @@ WebApplicationContext#SCOPE_SESSION       // web同一个session创建一个实�
 
 如果我们把Scope修改
 
-```
+```java
 /**
  * @Author: cuzz
  * @Date: 2018/9/23 15:40
@@ -402,7 +402,7 @@ ioc容器创建完成...
 
 编写WindowCondition类并重写matches方法
 
-  ```
+  ```java
 /**
    * @Author: cuzz
    * @Date: 2018/9/23 20:30
@@ -466,7 +466,7 @@ public class MainConfig2 {
 
 ### 3 ) 测试
 
-```
+```java
     @Test
     public void test04() {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig2.class);
@@ -523,7 +523,7 @@ public class Color {
 
 我们只需要在配置类添加一个@Import把这个类导入
 
-```
+```java
 @Import({Color.class})
 @Configuration
 public class MainConfig2 {}
@@ -613,7 +613,7 @@ public interface ImportBeanDefinitionRegistrar {
 
 编写一个ImportBeanDefinitionRegistrar实现类
 
-```
+```java
 /**
  * @Author: cuzz
  * @Date: 2018/9/23 21:29
@@ -745,7 +745,7 @@ colorFactoryBean的类型是: class com.cuzz.bean.Color
 
 此时输出
 
-```java
+```
 colorFactoryBean的类型是: class com.cuzz.bean.Color
 colorFactoryBean的类型是: class com.cuzz.bean.ColorFactoryBean
 ```

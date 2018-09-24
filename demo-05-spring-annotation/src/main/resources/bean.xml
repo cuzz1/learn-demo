@@ -9,4 +9,6 @@
         <property name="name" value="cuzz"></property>
         <property name="age" value="18"></property>
     </bean>
+
+    <bean id="car" class="com.cuzz.bean.Car" init-method="init" destroy-method="destroy"></bean>
 </beans>
