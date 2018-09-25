@@ -9,6 +9,7 @@
         <property name="name" value="cuzz"></property>
         <property name="age" value="18"></property>
     </bean>
+    <context:property-placeholder location="classpath:person.properties"/>
 
     <bean id="car" class="com.cuzz.bean.Car" init-method="init" destroy-method="destroy"></bean>
 </beans>

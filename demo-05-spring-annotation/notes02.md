@@ -293,3 +293,44 @@ cat...destroy...
 
 ## 5. 生命周期BeanPostProcessor原理
 
+通过debug到populateBean，先给属性赋值在执行initializeBean方法
+
+```java
+try {
+    populateBean(beanName, mbd, instanceWrapper);
+    if (exposedObject != null) {
+        exposedObject = initializeBean(beanName, exposedObject, mbd);
+    }
+}
+```
+
+initializeBean方法时，
+
+```java
+protected Object initializeBean(final String beanName, final Object bean, RootBeanDefinition mbd) {
+
+
+    Object wrappedBean = bean;
+    if (mbd == null || !mbd.isSynthetic()) {
+        // 执行before方法
+        wrappedBean = applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName);
+    }
+	...
+    try {
+        // 执行初始化
+        invokeInitMethods(beanName, wrappedBean, mbd);
+    }
+
+    if (mbd == null || !mbd.isSynthetic()) {
+        // 执行after方法
+        wrappedBean = applyBeanPostProcessorsAfterInitialization(wrappedBean, beanName);
+    }
+    return wrappedBean;
+}
+```
+
+
+
+**Spring底层对`BeanPostProcessor`的使用**：
+
+Bean赋值、注入其他组件、@Autowired、生命周期注解功能、@Async等等都使用到了BeanPostProcessor这个接口的实现类，很重要
