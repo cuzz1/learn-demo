@@ -144,3 +144,122 @@ public class Boss {
 }
 ```
 
+## 5. 自动装配Aware注入Spring底层注解
+
+自定义组件想要使用Spring容器底层的一些组件（ApplicationContext，BeanFactory 等等），自定义组件实现xxxAware，在创建对象的时候会调用接口规定的方法注入相关的组件
+
+```java
+/**
+ * Marker superinterface indicating that a bean is eligible to be
+ * notified by the Spring container of a particular framework object
+ * through a callback-style method. Actual method signature is
+ * determined by individual subinterfaces, but should typically
+ * consist of just one void-returning method that accepts a single
+ * argument.
+ */
+public interface Aware {
+
+}
+```
+
+我们实现几个常见的Aware接口
+
+```java
+/**
+ * @Author: cuzz
+ * @Date: 2018/9/25 10:18
+ * @Description:
+ */
+@Component
+public class Red implements BeanNameAware ,BeanFactoryAware, ApplicationContextAware {
+    private ApplicationContext applicationContext;
+
+    @Override
+    public void setBeanName(String name) {
+        System.out.println("当前Bean的名字: " + name);
+    }
+
+    @Override
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        System.out.println("当前的BeanFactory: " + beanFactory);
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+        System.out.println("传入的ioc: " + applicationContext);
+    }
+}
+```
+
+注入到配置中测试
+
+```java
+/**
+ * @Author: cuzz
+ * @Date: 2018/9/25 10:28
+ * @Description:
+ */
+public class IOCTestAware {
+
+    @Test
+    public void test01() {
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfigOfAware.class);
+
+    }
+}
+```
+
+测试结果
+
+```
+当前Bean的名字: red
+当前的BeanFactory: org.springframework.beans.factory.support.DefaultListableBeanFactory@159c4b8: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.event.internalEventListenerProcessor,org.springframework.context.event.internalEventListenerFactory,mainConfigOfAware,red]; root of factory hierarchy
+传入的ioc: org.springframework.context.annotation.AnnotationConfigApplicationContext@1e89d68: startup date [Tue Sep 25 10:29:17 CST 2018]; root of context hierarchy
+
+```
+
+把Spring自定义组件注入到容器中
+
+**原理：**
+
+```java
+public interface ApplicationContextAware extends Aware {}
+```
+
+`xxxAware`都是通过`xxxProcessor`来处理的
+
+比如：`ApplicationContextAware`  对应`ApplicationContextAwareProcessor`
+
+## 6. 自动装配@Profile环境搭建
+
+Profile是Spring为我们提供可以根据当前环境，动态的激活和切换一系组件的功能
+
+
+
+**a.** 使用命令动态参数激活：虚拟机参数位子加载 `-Dspring.profiles.active=test
+
+**b.** 使用代码激活环境
+
+```java
+/**
+ * @Author: cuzz
+ * @Date: 2018/9/25 10:59
+ * @Description:
+ */
+public class IOCTestProfile {
+
+    @Test
+    public void test01() {
+        // 1. 使用无参构造器创建一个applicationContext
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
+        // 2. 设置要激活的环境
+        applicationContext.getEnvironment().setActiveProfiles("test");
+        // 3. 注册主配置类
+        applicationContext.register(MainConfigOfProfile.class);
+        // 4. 启动刷新容器
+        applicationContext.refresh();
+    }
+}
+```
+
