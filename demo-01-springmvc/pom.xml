@@ -7,10 +7,7 @@
   <groupId>com.cuzz</groupId>
   <artifactId>springmvc</artifactId>
   <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>../hello-quartz</module>
-    </modules>
-    <packaging>pom</packaging>
+
 
   <name>springmvc Maven Webapp</name>
   <!-- FIXME change it to the project's website -->

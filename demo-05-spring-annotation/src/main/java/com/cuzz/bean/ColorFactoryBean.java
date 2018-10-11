@@ -18,6 +18,7 @@ public class ColorFactoryBean implements FactoryBean<Color> {
     public Class<?> getObjectType() {
         return Color.class;
     }
+
     // 是否为单例
     @Override
     public boolean isSingleton() {
