@@ -12,6 +12,7 @@ import java.util.List;
  */
 public class FilterApple {
 
+    @FunctionalInterface
     public interface AppleFilter {
         boolean filter(Apple apple);
     }
@@ -94,6 +95,14 @@ public class FilterApple {
         System.out.println(greenApples);
     }
 
+    // 匿名类 如果interface只有一个方法
+    @Test
+    public void test05() {
+        List<Apple> apples = Arrays.asList(new Apple("green", 100), new Apple("red", 120), new Apple("green", 70));
+        List<Apple> greenApples = findApple(apples, apple -> {
+           return apple.getColor().equals("green");
+        });
 
-
+        System.out.println(greenApples);
+    }
 }
