@@ -15,7 +15,7 @@ import java.util.function.Function;
 public class MethodReference {
 
     @Test
-    // 自动推导
+    // 自动推导类型
     public void test01() {
         Function<String, Integer> function = Integer::parseInt;
         Integer i = function.apply("123");
@@ -23,6 +23,7 @@ public class MethodReference {
     }
 
     @Test
+    // 自动推导构造器
     public void test02() {
         BiFunction<String, Long, Apple> appleBiFunction = Apple::new;
         Apple apple = appleBiFunction.apply("red", 100L);
