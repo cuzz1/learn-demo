@@ -1,5 +1,7 @@
 package com.cuzz.server;
 
+import com.cuzz.protocol.IMDecoder;
+import com.cuzz.protocol.IMEncoder;
 import com.cuzz.server.handler.HttpHandler;
 import com.cuzz.server.handler.WebSocketHandler;
 import io.netty.bootstrap.ServerBootstrap;
@@ -8,13 +10,12 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
-import io.netty.handler.codec.http.HttpRequestDecoder;
-import io.netty.handler.codec.http.HttpResponseEncoder;
 import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.stream.ChunkedWriteHandler;
 
-import javax.sql.rowset.CachedRowSet;
+import java.util.logging.SocketHandler;
+
 
 /**
  * @Author: cuzz
@@ -55,6 +56,10 @@ public class ChatServer {
                             ChannelPipeline pipeline = client.pipeline();
 
 
+                            pipeline.addLast(new IMDecoder());
+                            pipeline.addLast(new IMEncoder());
+
+
                             //================HTTP请求==============
                             // 解码和编码HTTP请求
                             pipeline.addLast(new HttpServerCodec());
@@ -67,6 +72,8 @@ public class ChatServer {
                             // ===============WebSocket协议====================
                             pipeline.addLast(new WebSocketServerProtocolHandler("/im"));
                             pipeline.addLast(new WebSocketHandler());
+
+
 
                         }
                     })
