@@ -1,6 +1,6 @@
 # Spring注解驱动开发（三）
 
-## 1. 属性赋值@value赋值
+# 1. 属性赋值@value赋值
 
 使用@Value赋值
 
@@ -80,7 +80,7 @@ Person(name=vhuj, age=18, nickName=三三)
 ---------------------------
 ```
 
-## 2. 自动装配@Autowired@Qualifier@Primary
+# 2. 自动装配@Autowired@Qualifier@Primary
 
 自动转配：
 
@@ -98,7 +98,7 @@ Person(name=vhuj, age=18, nickName=三三)
 
 @Primary让Spring自动装配时首先装配
 
-## 3. 自动装配@Resource和@Inject
+# 3. 自动装配@Resource和@Inject
 
 Spring还支持使用@Resource (JSR250) 和@Inject (JSR330) 注解，这两个是java规范
 
@@ -110,7 +110,7 @@ Spring还支持使用@Resource (JSR250) 和@Inject (JSR330) 注解，这两个�
 
 
 
-## 4. 自动装配其他地方的自动装配
+# 4. 自动装配其他地方的自动装配
 
 @Autowired：构造器、参数、方法属性等
 
@@ -144,7 +144,7 @@ public class Boss {
 }
 ```
 
-## 5. 自动装配Aware注入Spring底层注解
+# 5. 自动装配Aware注入Spring底层注解
 
 自定义组件想要使用Spring容器底层的一些组件（ApplicationContext，BeanFactory 等等），自定义组件实现xxxAware，在创建对象的时候会调用接口规定的方法注入相关的组件
 
@@ -231,7 +231,7 @@ public interface ApplicationContextAware extends Aware {}
 
 比如：`ApplicationContextAware`  对应`ApplicationContextAwareProcessor`
 
-## 6. 自动装配@Profile环境搭建
+# 6. 自动装配@Profile环境搭建
 
 Profile是Spring为我们提供可以根据当前环境，动态的激活和切换一系组件的功能
 
