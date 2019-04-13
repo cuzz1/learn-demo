@@ -10,9 +10,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class MainTest {
     public static void main(String[] args) {
-        ApplicationContext  applicationContext = new ClassPathXmlApplicationContext("bean.xml");
-        // 用id获取
-        Person bean = (Person) applicationContext.getBean("person");
-        System.out.println(bean);
+        final ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean.xml");
+        Person person = (Person) applicationContext.getBean("person");
+        System.out.println(person);
     }
 }

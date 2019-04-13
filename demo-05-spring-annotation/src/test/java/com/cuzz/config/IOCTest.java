@@ -17,11 +17,13 @@ public class IOCTest {
     @Test
     public void test01() {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig.class);
-        // 获取所有bean定义的名字
+        // // 获取所有bean定义的名字
         String[] beanNames = applicationContext.getBeanDefinitionNames();
         for (String name : beanNames) {
             System.out.println(name);
         }
+        Person person1 = (Person) applicationContext.getBean("person01");
+        System.out.println(person1);
     }
 
     @Test

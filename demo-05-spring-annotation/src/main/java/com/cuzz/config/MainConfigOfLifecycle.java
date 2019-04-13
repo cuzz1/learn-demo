@@ -1,9 +1,6 @@
 package com.cuzz.config;
 
-import com.cuzz.bean.Car;
-import com.cuzz.bean.Cat;
-import com.cuzz.bean.Dog;
-import com.cuzz.bean.MyBeanPostProcessor;
+import com.cuzz.bean.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -20,18 +17,23 @@ public class MainConfigOfLifecycle {
 //        return new Car();
 //    }
 
-    @Bean
-    public Cat cat() {
-        return new Cat();
-    }
+    // @Bean
+    // public Cat cat() {
+    //     return new Cat();
+    // }
 
 //    @Bean
 //    public Dog dog() {
 //        return new Dog();
 //    }
 
+
+//     @Bean
+//     public MyBeanPostProcessor myBeanPostProcessor() {
+//         return new MyBeanPostProcessor();
+//     }
     @Bean
-    public MyBeanPostProcessor myBeanPostProcessor() {
-        return new MyBeanPostProcessor();
+    public Red red() {
+        return new Red();
     }
 }
