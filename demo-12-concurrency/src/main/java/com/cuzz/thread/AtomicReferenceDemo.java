@@ -1,11 +1,11 @@
 package com.cuzz.thread;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.AllArgsConstructor;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-/**
+/*
  * @Author: cuzz
  * @Date: 2019/4/20 20:42
  * @Description:
